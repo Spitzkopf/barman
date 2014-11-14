@@ -8,9 +8,8 @@ var rangeGenerator = function (palette, cocktailCollection, maximalFit) {
 		var diff = currentCocktail.palette.rankSimilarity(palette);
 		similarCocktails.push([currentCocktail, diff]);
 	}
-
+	
 	var topMatches = similarCocktails.sort(function(a, b) { return a[1] - b[1] }).slice(0, similarCocktails.length >= count ? count : similarCocktails.length).map(function(item){ return item[0]; });
-	console.log(topMatches.map(function(c) { return c.title; }))
 	return topMatches[Math.floor(Math.random() * topMatches.length)];
 };
 

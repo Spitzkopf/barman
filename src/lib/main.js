@@ -68,7 +68,7 @@ function startAnalysis(state) {
     });
 
     worker.port.on(doneSignal, function(palette) {
-      var sitePalette = new utils.Palette(JSON.parse(palette));
+      var sitePalette = new utils.Palette(JSON.parse(palette).map(function(c) { return utils.ColorFactory.fromRGB(c); }));
       var chosenCocktail = engine.getCocktailByPalette(sitePalette, dbapi.cocktails);
       panel.port.emit(doneSignal, chosenCocktail)
       panel.show({
